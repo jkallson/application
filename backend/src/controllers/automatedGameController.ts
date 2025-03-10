@@ -4,7 +4,7 @@ import { playFullGame } from '../services/automatedGameService';
 export const startAutomatedGame = async (req: Request, res: Response) => {
     try {
         await playFullGame();
-        res.status(200).send('Game logic executed successfully.');
+        res.status(200).send('Game started...');
     } catch (error) {
         res.status(500).json({ error: 'Error running game logic.' });
     }

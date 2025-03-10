@@ -4,7 +4,7 @@ import axios, {AxiosResponse} from "axios";
 
 export class GameRepository {
     static async startGame(): Promise<Game> {
-        const response: AxiosResponse<Game> = await axios.post(`${process.env.API_BASE_URL}/start`)
+        const response: AxiosResponse<Game> = await axios.post(`${process.env.API_BASE_URL}/game/start`)
         return response.data
     }
 
