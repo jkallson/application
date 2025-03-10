@@ -8,3 +8,14 @@ export interface Message {
     encrypted: string | null
     probability: MessageProbability
 }
+
+export interface MessageSolveResponse {
+    success: boolean,
+    lives: number
+    gold: number
+    score: number
+    highScore: number
+    turn: number
+    message: string
+}
+

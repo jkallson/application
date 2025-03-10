@@ -1,8 +1,6 @@
 import app from './app';
-import express, {Request, Response} from "express";
+import express from "express";
+import automatedGameRoute from "../src/routes/automatedGameRoute";
 
 app.use(express.json());
-
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World!');
-});
+app.use("/api/auto-play", automatedGameRoute)
