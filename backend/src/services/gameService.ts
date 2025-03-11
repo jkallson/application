@@ -1,5 +1,6 @@
 import {GameRepository} from "../repositories/GameRepository";
 import {Game} from "../interfaces/Game";
+import {Reputation} from "../interfaces/Reputation";
 
 export const GameService = {
     async startNewGame(): Promise<Game> {
@@ -12,4 +13,8 @@ export const GameService = {
         console.log(`[INFO] - New game started. Game ID: ${gameState.gameId}`);
         return gameState;
     },
+
+    async getReputation(gameId: string): Promise<Reputation> {
+        return await GameRepository.fetchReputation(gameId)
+    }
 }
