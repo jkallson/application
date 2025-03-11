@@ -8,7 +8,7 @@ export class ShopRepository {
     }
 
     static async purchaseShopItem(gameId: string, itemId: string ): Promise<ShopItemPurchaseResponse> {
-        const response: AxiosResponse<ShopItemPurchaseResponse> = await axios.get(`${process.env.API_BASE_URL}/${gameId}/shop/buy/${itemId}`)
+        const response: AxiosResponse<ShopItemPurchaseResponse> = await axios.post(`${process.env.API_BASE_URL}/${gameId}/shop/buy/${itemId}`)
         return response.data
     }
 }
