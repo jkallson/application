@@ -8,11 +8,9 @@
 import { createRouter, createWebHistory } from 'vue-router/auto'
 import DashboardView from '@/pages/dashboard/views/DashboardView.vue';
 import LandingPage from '@/pages/landingpage/views/LandingPage.vue';
-import Game2 from '@/pages/dashboard/views/Game2.vue';
 const routes = [
     { path: '/', component: LandingPage },
     { path: '/game', component: DashboardView },
-    { path: '/game2', component: Game2 },
 ];
 
 const router = createRouter({

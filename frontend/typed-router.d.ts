@@ -21,7 +21,6 @@ declare module 'vue-router/auto-routes' {
     '/dashboard/components/shop/ShopList': RouteRecordInfo<'/dashboard/components/shop/ShopList', '/dashboard/components/shop/ShopList', Record<never, never>, Record<never, never>>,
     '/dashboard/components/tasks/TasksTable': RouteRecordInfo<'/dashboard/components/tasks/TasksTable', '/dashboard/components/tasks/TasksTable', Record<never, never>, Record<never, never>>,
     '/dashboard/views/DashboardView': RouteRecordInfo<'/dashboard/views/DashboardView', '/dashboard/views/DashboardView', Record<never, never>, Record<never, never>>,
-    '/dashboard/views/Game2': RouteRecordInfo<'/dashboard/views/Game2', '/dashboard/views/Game2', Record<never, never>, Record<never, never>>,
     '/landingpage/views/LandingPage': RouteRecordInfo<'/landingpage/views/LandingPage', '/landingpage/views/LandingPage', Record<never, never>, Record<never, never>>,
   }
 }
