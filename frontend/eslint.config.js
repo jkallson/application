@@ -30,7 +30,26 @@ export default [
                     allowTernary: true,
                 },
             ],
+            'vue/html-self-closing': ['error', {
+                html: {
+                    void: 'never',
+                    normal: 'never',
+                    component: 'never'
+                },
+                svg: 'never',
+                math: 'never'
+            }],
             'vue/multi-word-component-names': 'off',
+            'vue/valid-v-slot': ['error', { allowModifiers: true }],
+            'vue/v-slot-style': ['error', {
+                'atComponent': 'longform',
+                'default': 'longform',
+                'named': 'longform',
+            }],
+            'indent': ['error', 4],
+            'quotes': ['error', 'single'],
+            'object-curly-spacing': ['error', 'always'],
+            'vue/html-indent': ['error', 4]
         }
     }
 ]
