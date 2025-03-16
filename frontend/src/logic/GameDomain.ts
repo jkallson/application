@@ -32,6 +32,11 @@ export class GameDomain {
 
         this.state.turn = response.turn
 
+        if (this.state.lives <= 0) {
+            return response
+        }
+
+        await this.fetchMessages()
         return response
     }
 
@@ -45,7 +50,6 @@ export class GameDomain {
         }
 
         const response: ShopItemPurchase = await ShopRepository.purchaseShopItem(this.state.gameId, item.id)
-        console.log(response)
 
         if (response.shoppingSuccess) {
             this.state.gold = response.gold
