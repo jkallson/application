@@ -24,7 +24,7 @@
                                     >
                                         mdi-star
                                     </v-icon>
-                                    <span class="status-value">{{ score }}</span>
+                                    <span class="status-value">{{ gameStore.gameDomain.state.score }}</span>
                                     <span class="status-label">Score</span>
                                 </div>
                             </v-col>
@@ -39,7 +39,7 @@
                                     >
                                         mdi-cash
                                     </v-icon>
-                                    <span class="status-value">{{ gold }}</span>
+                                    <span class="status-value">{{ gameStore.gameDomain.state.gold }}</span>
                                     <span class="status-label">Gold</span>
                                 </div>
                             </v-col>
@@ -49,7 +49,7 @@
                             >
                                 <div
                                     class="status-item"
-                                    :class="{ danger: lives <= 5 }"
+                                    :class="{ danger: gameStore.gameDomain.state.lives <= 5 }"
                                 >
                                     <v-icon
                                         color="red"
@@ -57,7 +57,7 @@
                                     >
                                         mdi-heart
                                     </v-icon>
-                                    <span class="status-value">{{ lives }}</span>
+                                    <span class="status-value">{{ gameStore.gameDomain.state.lives }}</span>
                                     <span class="status-label">Lives</span>
                                 </div>
                             </v-col>
@@ -71,22 +71,22 @@
                         flat
                     >
                         <v-card-title>Shop</v-card-title>
-                        <v-list>
+                        <v-list density="compact">
                             <v-list-item
-                                v-for="item in shopItems"
+                                v-for="item in gameStore.gameDomain.shopItems"
                                 :key="item.id"
-                                class="shop-item"
+                                :title="item.name"
+                                :subtitle="`${item.cost} coins`"
                             >
-                                <v-icon>{{ item.icon }}</v-icon>
-                                <v-list-item-title>
-                                    {{ item.name }} — {{ item.price }} coins
-                                </v-list-item-title>
-                                <v-btn
-                                    color="primary"
-                                    class="buy-btn"
-                                >
-                                    Buy
-                                </v-btn>
+                                <template v-slot:append>
+                                    <v-btn
+                                        class="buy-btn"
+                                        size="small"
+                                        @click="buyShopItem(item)"
+                                    >
+                                        Buy
+                                    </v-btn>
+                                </template>
                             </v-list-item>
                         </v-list>
                     </v-card>
@@ -115,24 +115,21 @@ import { onMounted, ref } from 'vue';
 import TasksTable from '@/pages/dashboard/components/tasks/TasksTable.vue';
 import { useRoute } from 'vue-router'
 import { useGameStore } from '@/stores/gameStore';
+import type { ShopItem } from '@/types/Shop';
 const gameStore = useGameStore()
 
 const route = useRoute()
 
-onMounted(() => {
-    console.log(gameStore.gameDomain)
-    console.log(route.query)
+onMounted(async () => {
+    await Promise.all([
+        await gameStore.gameDomain.fetchMessages(),
+        await gameStore.gameDomain.fetchShopItems()
+    ])
 })
 
-const score = ref(23123);
-const gold = ref(12312);
-const lives = ref(5);
-
-const shopItems = ref([
-    { name: 'Healing Potion', icon: 'mdi-hospital-box', price: 50 },
-    { name: 'Book of Tricks', icon: 'mdi-book-open', price: 100 },
-    { name: 'Potion of Awesome Wings', icon: 'mdi-fire', price: 300 },
-]);
+async function buyShopItem(item: ShopItem) {
+    await gameStore.gameDomain.buyShopItem(item)
+}
 </script>
 
 <style scoped>

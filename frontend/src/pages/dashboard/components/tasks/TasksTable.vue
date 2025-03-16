@@ -2,7 +2,7 @@
     <v-sheet>
         <v-data-table
             :headers="taskHeaders"
-            :items="tasks"
+            :items="gameStore.gameDomain.messages"
             hide-default-footer
             density="compact"
             class="elevation-2"
@@ -12,6 +12,7 @@
                 <v-btn
                     class="solve-btn"
                     size="small"
+                    @click="solveTask(item)"
                 >
                     Solve
                 </v-btn>
@@ -33,32 +34,28 @@
 import { ref, shallowRef } from 'vue'
 
 const loading = shallowRef(false)
+import { useGameStore } from '@/stores/gameStore';
+import type { Message } from '@/types/Message';
+const gameStore = useGameStore()
 
 const taskHeaders = ref([
-    { title: 'Task Name',  value: 'name' },
-    { title: 'Risk', value: 'torque' },
+    { title: 'Task Name',  value: 'message' },
+    { title: 'Risk', value: 'probability' },
     { title: 'Reward', value: 'reward' },
+    { title: 'Expires in', value: 'expiresIn' },
     { title: 'Action', value: 'action', sortable: false }
 ]);
 
-const tasks = [
-    { name: 'Chevrolet Camaro', year: 1967, engine: 'V8', reward: 375, torque: 415 },
-    { name: 'Ford Mustang', year: 1965, engine: 'V8', reward: 271, torque: 312 },
-    { name: 'Dodge Charger', year: 1968, engine: 'V8', reward: 425, torque: 490 },
-    { name: 'Pontiac GTO', year: 1964, engine: 'V8', reward: 350, torque: 445 },
-    { name: 'Plymouth Barracuda', year: 1964, engine: 'V8', reward: 330, torque: 425 },
-    { name: 'Chevrolet Chevelle SS', year: 1970, engine: 'V8', reward: 450, torque: 500 },
-    { name: 'Oldsmobile 442', year: 1971, engine: 'V8', reward: 340, torque: 440 },
-    { name: 'Dodge Challenger', year: 1970, engine: 'V8', reward: 425, torque: 490 },
-    { name: 'AMC Javelin', year: 1968, engine: 'V8', reward: 315, torque: 425 },
-    { name: 'Mercury Cougar', year: 1967, engine: 'V8', reward: 335, torque: 427 },
-]
+async function solveTask(item: Message) {
+    console.log(item.adId)
+    const result = await gameStore.gameDomain.solveMessage(item.adId)
+    console.log(result)
+}
 
-function onClick () {
+async function onClick () {
     loading.value = true
-    setTimeout(() => {
-        loading.value = false
-    }, 2000)
+    await gameStore.gameDomain.fetchMessages()
+    loading.value = false
 }
 </script>
 

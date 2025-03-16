@@ -11,32 +11,8 @@ export const useGameStore = defineStore('game', () => {
         gameDomain.value = new GameDomain(state, reputation);
     }
 
-    async function fetchMessages() {
-        if (!gameDomain.value) return;
-        await gameDomain.value.fetchMessages();
-    }
-
-    async function solveMessage() {
-        if (!gameDomain.value) return;
-        await gameDomain.value.solveMessage();
-    }
-
-    async function fetchShopItems() {
-        if (!gameDomain.value) return;
-        await gameDomain.value.fetchShopItems();
-    }
-
-    async function buyShopItem() {
-        if (!gameDomain.value) return;
-        await gameDomain.value.buyShopItem();
-    }
-
     return {
         gameDomain,
-        initializeGame,
-        fetchMessages,
-        solveMessage,
-        fetchShopItems,
-        buyShopItem
+        initializeGame
     };
 });
