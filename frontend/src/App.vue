@@ -2,7 +2,11 @@
     <v-app>
         <v-main>
             <div class="app-background">
-                <Notifications position="bottom right"></Notifications>
+                <Notifications
+                    position="bottom right"
+                    classes="app-notification"
+                    :duration="20000"
+                ></Notifications>
                 <router-view></router-view>
             </div>
         </v-main>
@@ -13,7 +17,7 @@
 
 import { Notifications } from '@kyvg/vue3-notification';
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 .container {
     width: 100%;
     max-width: 1054px;
@@ -47,5 +51,30 @@ import { Notifications } from '@kyvg/vue3-notification';
 .v-main > * {
     position: relative;
     z-index: 1;
+}
+
+.app-notification {
+    margin: 0 5px 5px;
+    padding: 10px;
+    font-size: 12px;
+    color: #ffffff;
+
+    background: #1d75bb;
+    border-left: 5px solid #003465;
+
+    &.success {
+        background: #157c19;
+        border-left-color: #005717;
+    }
+
+    &.warn {
+        background: #ffb648;
+        border-left-color: #f48a06;
+    }
+
+    &.error {
+        background: #b2281d;
+        border-left-color: #500800;
+    }
 }
 </style>
