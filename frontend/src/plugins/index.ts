@@ -11,10 +11,12 @@ import { createPinia } from 'pinia';
 
 // Types
 import type { App } from 'vue'
+import { Notifications } from '@kyvg/vue3-notification';
 
 export function registerPlugins (app: App) {
     app
         .use(vuetify)
         .use(router)
+        .use(Notifications)
         .use(createPinia())
 }

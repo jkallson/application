@@ -30,7 +30,7 @@
         <v-row class="feature-section">
             <v-col
                 v-for="(feature, index) in features"
-                :key="feature.title"
+                :key="index"
                 cols="12"
                 md="4"
             >
@@ -80,7 +80,7 @@ const startGame = async () => {
 };
 
 
-const features = [
+const features: { icon: string, title: string, description: string, color: string }[] = [
     {
         icon: 'mdi-sword',
         title: 'Quests & Adventures',

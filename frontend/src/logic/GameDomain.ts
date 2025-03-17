@@ -14,6 +14,7 @@ export class GameDomain {
     constructor(state: Game, reputation: Reputation) {
         this.state = state
         this.reputation = reputation
+        this.state.turn = 1
     }
 
     public async fetchMessages (): Promise<void> {
@@ -40,11 +41,11 @@ export class GameDomain {
         return response
     }
 
-    public async fetchShopItems (): Promise<void> {
+    public async fetchShopItems (): Promise<ShopItemPurchase> {
         this.shopItems = await ShopRepository.getShopItems(this.state.gameId)
     }
 
-    public async buyShopItem (item: ShopItem): void {
+    public async buyShopItem (item: ShopItem): Promise<void> {
         if (item.cost > this.state.gold) {
             return
         }
@@ -65,5 +66,8 @@ export class GameDomain {
                 }
             }
         }
+
+        await this.fetchMessages()
+        return response
     }
 }
