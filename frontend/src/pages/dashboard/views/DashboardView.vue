@@ -1,5 +1,8 @@
 <template>
-    <div class="game-wrapper">
+    <div
+        v-if="state !== null"
+        class="game-wrapper"
+    >
         <v-row>
             <!-- Status Card -->
             <v-col cols="12">
@@ -20,7 +23,7 @@
                                 >
                                     mdi-star
                                 </v-icon>
-                                <span class="status-value">{{ gameStore.gameDomain.state.score }}</span>
+                                <span class="status-value">{{ state.score }}</span>
                                 <span class="status-label">Score</span>
                             </div>
                         </v-col>
@@ -35,7 +38,7 @@
                                 >
                                     mdi-cash
                                 </v-icon>
-                                <span class="status-value">{{ gameStore.gameDomain.state.gold }}</span>
+                                <span class="status-value">{{ state.gold }}</span>
                                 <span class="status-label">Gold</span>
                             </div>
                         </v-col>
@@ -50,7 +53,7 @@
                                 >
                                     mdi-dice-5
                                 </v-icon>
-                                <span class="status-value">{{ gameStore.gameDomain.state.turn }}</span>
+                                <span class="status-value">{{ state.turn }}</span>
                                 <span class="status-label">Turn</span>
                             </div>
                         </v-col>
@@ -60,7 +63,7 @@
                         >
                             <div
                                 class="status-item"
-                                :class="{ danger: gameStore.gameDomain.state.lives <= 5 }"
+                                :class="{ danger: state.lives <= 5 }"
                             >
                                 <v-icon
                                     color="error"
@@ -68,7 +71,7 @@
                                 >
                                     mdi-heart
                                 </v-icon>
-                                <span class="status-value">{{ gameStore.gameDomain.state.lives }}</span>
+                                <span class="status-value">{{ state?.lives }}</span>
                                 <span class="status-label">Lives</span>
                             </div>
                         </v-col>
@@ -108,7 +111,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import TasksTable from '@/pages/dashboard/components/tasks/TasksTable.vue';
 import { useGameStore } from '@/stores/gameStore';
 import ShopList from '@/pages/dashboard/components/shop/ShopList.vue';
@@ -119,10 +122,21 @@ const router = useRouter();
 const gameStore = useGameStore()
 
 onMounted(async () => {
+    if (gameStore.gameDomain === null) {
+        await router.push('/')
+    }
     await Promise.all([
         await gameStore.gameDomain.fetchMessages(),
         await gameStore.gameDomain.fetchShopItems()
     ])
+})
+
+const state = computed(() => {
+    if (gameStore.gameDomain === null) {
+        return null
+    }
+
+    return gameStore.gameDomain.state
 })
 
 const startGame = async (): Promise<void> => {

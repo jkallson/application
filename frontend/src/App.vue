@@ -5,7 +5,6 @@
                 <Notifications
                     position="bottom right"
                     classes="app-notification"
-                    :duration="20000"
                 ></Notifications>
                 <router-view></router-view>
             </div>
@@ -59,12 +58,14 @@ import { Notifications } from '@kyvg/vue3-notification';
     font-size: 12px;
     color: #ffffff;
 
-    background: #1d75bb;
-    border-left: 5px solid #003465;
+    &.info {
+        background: #1d75bb;
+        border-left: 5px solid #003465;
+    }
 
     &.success {
-        background: #157c19;
-        border-left-color: #005717;
+        background: #1ca223;
+        border-left-color: #02330e;
     }
 
     &.warn {

@@ -1,6 +1,7 @@
 <template>
     <v-sheet>
         <v-data-table
+            v-model:sort-by="sortBy"
             :headers="taskHeaders"
             :items="gameStore.gameDomain.messages"
             hide-default-footer
@@ -68,6 +69,7 @@ const taskHeaders = ref([
     { title: 'Action', value: 'action', sortable: false }
 ]);
 
+const sortBy = ref([{ key: 'reward', order: 'desc' }])
 const emit = defineEmits(['restart']);
 
 const isSolvingTaskInProgress = ref<boolean>(false)
