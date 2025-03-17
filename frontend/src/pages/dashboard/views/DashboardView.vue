@@ -60,9 +60,10 @@
                         <v-col
                             cols="12"
                             md="3"
+                            class="d-flex justify-lg-space-around"
                         >
                             <div
-                                class="status-item"
+                                class="status-item flex-grow-1"
                                 :class="{ danger: state.lives <= 5 }"
                             >
                                 <v-icon
@@ -73,6 +74,21 @@
                                 </v-icon>
                                 <span class="status-value">{{ state?.lives }}</span>
                                 <span class="status-label">Lives</span>
+                            </div>
+                            <div class="d-flex align-center">
+                                <v-tooltip
+                                    text="Press to go back to the main menu"
+                                    location="bottom"
+                                >
+                                    <template v-slot:activator="{ props }">
+                                        <v-btn
+                                            v-bind="props"
+                                            size="large"
+                                            icon="mdi-arrow-left"
+                                            @click="toMainMenu"
+                                        ></v-btn>
+                                    </template>
+                                </v-tooltip>
                             </div>
                         </v-col>
                     </v-row>
@@ -151,6 +167,10 @@ const startGame = async (): Promise<void> => {
     ])
 
     await router.push({ path: '/game', query: { id: game.gameId } });
+}
+
+const toMainMenu = (): void => {
+    router.push('/')
 }
 </script>
 
