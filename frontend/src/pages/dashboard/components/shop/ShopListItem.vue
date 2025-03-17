@@ -6,6 +6,7 @@
         <template v-slot:append>
             <v-btn
                 class="buy-btn"
+                color="primary"
                 :disabled="item.cost > gameStore.gameDomain.state.gold"
                 size="small"
                 :loading="loading"
@@ -53,21 +54,12 @@ const buyShopItem = async (): Promise<void> => {
 
 
 <style scoped>
-	.buy-btn {
-		background-color: #4CAF50;
-		color: #fff;
-		border: 1px solid transparent;
-		border-radius: 6px;
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
-	}
-
 	.buy-btn:hover {
 		transform: scale(1.05);
-		border-color: #4CAF50;
 	}
 
 	.buy-btn:disabled {
-		background-color: black;
+		background-color: black !important;
 		border: none;
 	}
 

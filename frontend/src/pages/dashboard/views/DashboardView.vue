@@ -15,7 +15,7 @@
                         >
                             <div class="status-item">
                                 <v-icon
-                                    color="primary"
+                                    color="info"
                                     size="24"
                                 >
                                     mdi-star
@@ -63,7 +63,7 @@
                                 :class="{ danger: gameStore.gameDomain.state.lives <= 5 }"
                             >
                                 <v-icon
-                                    color="red"
+                                    color="error"
                                     size="24"
                                 >
                                     mdi-heart
@@ -176,7 +176,6 @@ const startGame = async (): Promise<void> => {
 	font-weight: bold;
 }
 
-
 .status-label {
 	display: block;
 	opacity: 0.8;
@@ -187,7 +186,6 @@ const startGame = async (): Promise<void> => {
 	text-shadow: 0 0 12px rgba(255, 0, 0, 0.8);
 }
 
-/* Task & Shop Sections */
 .task-card, .shop-card {
 	background: rgba(0, 0, 0, 0.9);
 	border-radius: 12px;

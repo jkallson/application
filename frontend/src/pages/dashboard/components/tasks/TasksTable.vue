@@ -12,6 +12,7 @@
             <template v-slot:item.action="{ item }">
                 <v-btn
                     class="solve-btn"
+                    color="primary"
                     size="small"
                     :disabled="isSolvingTaskInProgress"
                     @click="onSolveTaskPressed(item)"
@@ -148,15 +149,12 @@ const solveTask = async (item: Message): Promise<void> => {
 </script>
 
 <style scoped>
-.solve-btn {
-	background-color: #4CAF50;
-	color: #fff;
-	border: 1px solid transparent;
-	border-radius: 6px;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
 .solve-btn:hover {
 	transform: scale(1.05);
+}
+
+.solve-btn:disabled {
+	background-color: black !important;
 }
 </style>

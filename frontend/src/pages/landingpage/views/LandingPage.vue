@@ -85,25 +85,24 @@ const features: { icon: string, title: string, description: string, color: strin
         icon: 'mdi-sword',
         title: 'Quests & Adventures',
         description: 'Engage in thrilling tasks that challenge your strategy and bravery.',
-        color: 'green',
+        color: 'success',
     },
     {
         icon: 'mdi-cash',
         title: 'Manage Resources',
         description: 'Earn gold, purchase powerful items, and upgrade wisely.',
-        color: 'yellow',
+        color: 'warning',
     },
     {
         icon: 'mdi-heart',
         title: 'Survive the Challenges',
         description: 'Every decision matters — manage your lives carefully.',
-        color: 'red',
+        color: 'error',
     }
 ];
 </script>
 
 <style scoped>
-/* Content Styling */
 .landing-page-content {
 	position: relative;
 	z-index: 1;
@@ -128,7 +127,6 @@ const features: { icon: string, title: string, description: string, color: strin
 	font-weight: 600;
 }
 
-/* Animated Dragon Logo */
 .dragon-logo {
 	animation: glow-spin 5s infinite alternate;
 }
@@ -159,7 +157,6 @@ const features: { icon: string, title: string, description: string, color: strin
 	box-shadow: 0 6px 25px rgba(0, 255, 0, 0.6);
 }
 
-/* Feature Cards */
 .feature-card {
 	background: rgba(0, 0, 0, 0.8);
 	color: #fff;

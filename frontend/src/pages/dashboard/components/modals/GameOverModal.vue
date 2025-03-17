@@ -7,7 +7,7 @@
         <v-card class="game-over-card">
             <v-card-title class="text-center">
                 <v-icon
-                    color="red"
+                    color="error"
                     size="48"
                 >
                     mdi-skull-crossbones
