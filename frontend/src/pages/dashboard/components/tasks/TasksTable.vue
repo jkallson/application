@@ -6,6 +6,7 @@
             hide-default-footer
             density="compact"
             class="elevation-2"
+            mobile-breakpoint="sm"
             hover
         >
             <template v-slot:item.action="{ item }">
