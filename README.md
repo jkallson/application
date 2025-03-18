@@ -4,13 +4,13 @@
 
 ### Run only backend solution
 - `cd backend`
-- Run `npm install`
+- Run `npm ci`
 - Run `npm run start:game`
 
 ### Run backend + frontend solution
 - Start backend.
     - `cd backend` 
-    - Run `npm install`
+    - Run `npm ci`
     - Run `nodemon`
     - Backend runs at http://localhost:3000
 - Start frontend

@@ -146,7 +146,7 @@ export class AutomatedGame {
         const shopItems: ShopItem[] = await ShopRepository.getShopItems(this.gameState.gameId);
 
         const healingPotion: ShopItem | undefined = shopItems.find(item => item.name === 'Healing potion');
-        if (this.gameState.lives <= 4 && this.gameState.gold >= 50 && healingPotion) {
+        if (this.gameState.lives <= 2 && this.gameState.gold >= 50 && healingPotion) {
             const shoppingResult: ShopItemPurchaseResponse = await ShopRepository.purchaseShopItem(this.gameState.gameId, healingPotion.id);
 
             if (shoppingResult.shoppingSuccess) {
