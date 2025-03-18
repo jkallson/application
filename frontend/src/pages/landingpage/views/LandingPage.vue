@@ -142,7 +142,6 @@ const features: { icon: string, title: string, description: string, color: strin
 	}
 }
 
-/* CTA Button */
 .cta-button {
 	background: linear-gradient(135deg, #1ca223, #3B8D32);
 	color: #fff;
