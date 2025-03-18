@@ -6,115 +6,7 @@
         <v-row>
             <!-- Status Card -->
             <v-col cols="12">
-                <v-card
-                    class="status-card"
-                    flat
-                    variant="outlined"
-                >
-                    <v-row dense>
-                        <v-col
-                            cols="12"
-                            md="3"
-                        >
-                            <div class="status-item">
-                                <v-icon
-                                    color="info"
-                                    size="24"
-                                >
-                                    mdi-star
-                                </v-icon>
-                                <span class="status-value">{{ state.score }}</span>
-                                <span class="status-label">Score</span>
-                            </div>
-                        </v-col>
-                        <v-col
-                            cols="12"
-                            md="3"
-                        >
-                            <div class="status-item">
-                                <v-icon
-                                    color="warning"
-                                    size="24"
-                                >
-                                    mdi-cash
-                                </v-icon>
-                                <span class="status-value">{{ state.gold }}</span>
-                                <span class="status-label">Gold</span>
-                            </div>
-                        </v-col>
-                        <v-col
-                            cols="12"
-                            md="3"
-                        >
-                            <div class="status-item">
-                                <v-icon
-                                    color="secondary"
-                                    size="24"
-                                >
-                                    mdi-dice-5
-                                </v-icon>
-                                <span class="status-value">{{ state.turn }}</span>
-                                <span class="status-label">Turn</span>
-                            </div>
-                        </v-col>
-                        <v-col
-                            cols="12"
-                            md="3"
-                            class="d-flex justify-lg-space-around"
-                        >
-                            <div
-                                class="status-item flex-grow-1"
-                                :class="{ danger: state.lives <= 5 }"
-                            >
-                                <v-icon
-                                    color="error"
-                                    size="24"
-                                >
-                                    mdi-heart
-                                </v-icon>
-                                <span class="status-value">{{ state?.lives }}</span>
-                                <span class="status-label">Lives</span>
-                            </div>
-                            <div
-                                v-if="showButton"
-                                class="d-flex align-center"
-                            >
-                                <v-tooltip
-                                    text="Press to go back to the main menu"
-                                    location="bottom"
-                                >
-                                    <template v-slot:activator="{ props }">
-                                        <v-btn
-                                            v-bind="props"
-                                            size="large"
-                                            icon="mdi-arrow-left"
-                                            @click="toMainMenu"
-                                        ></v-btn>
-                                    </template>
-                                </v-tooltip>
-                            </div>
-                        </v-col>
-                        <v-col
-                            v-if="!showButton"
-                            cols="12"
-                            class="d-flex justify-center"
-                        >
-                            <v-tooltip
-                                text="Press to go back to the main menu"
-                                location="bottom"
-                            >
-                                <template v-slot:activator="{ props }">
-                                    <v-btn
-                                        v-bind="props"
-                                        size="large"
-                                        icon="mdi-arrow-left"
-                                        @click="toMainMenu"
-                                    ></v-btn>
-                                </template>
-                            </v-tooltip>
-                        </v-col>
-                    </v-row>
-                </v-card>
+                <GameOverview :state="state"></GameOverview>
             </v-col>
 
             <!-- Task Table -->
@@ -156,23 +48,19 @@ import ShopList from '@/pages/dashboard/components/shop/ShopList.vue';
 import type { Game, Reputation } from '@/types/Game';
 import { GameRepository } from '@/repositories/GameRepository';
 import { useRouter } from 'vue-router';
+import GameOverview from '@/pages/dashboard/components/overview/GameOverview.vue';
 const router = useRouter();
 const gameStore = useGameStore()
-import { useDisplay } from 'vuetify'
-const { mdAndUp } = useDisplay()
 
 onMounted(async () => {
     if (gameStore.gameDomain === null) {
         await router.push('/')
+        return
     }
     await Promise.all([
         await gameStore.gameDomain.fetchMessages(),
         await gameStore.gameDomain.fetchShopItems()
     ])
-})
-
-const showButton: boolean = computed(() => {
-    return mdAndUp.value
 })
 
 const state = computed(() => {
@@ -196,10 +84,6 @@ const startGame = async (): Promise<void> => {
 
     await router.push({ path: '/game', query: { id: game.gameId } });
 }
-
-const toMainMenu = (): void => {
-    router.push('/')
-}
 </script>
 
 <style scoped>
@@ -215,36 +99,6 @@ const toMainMenu = (): void => {
 .game-wrapper > * {
 	position: relative;
 	z-index: 1;
-}
-
-/* Status Card */
-.status-card {
-	background: rgba(0, 0, 0, 0.9);
-	border-radius: 12px;
-	padding: 20px;
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-}
-
-.status-item {
-	text-align: center;
-}
-
-.status-value {
-	display: block;
-	font-size: 1.8rem;
-	font-weight: bold;
-}
-
-.status-label {
-	display: block;
-	opacity: 0.8;
-}
-
-.status-item.danger .status-value {
-	color: #F44336;
-	text-shadow: 0 0 12px rgba(255, 0, 0, 0.8);
 }
 
 .task-card, .shop-card {

@@ -20,6 +20,8 @@ declare module 'vue-router/auto-routes' {
   export interface RouteNamedMap {
     '/dashboard/components/modals/GameOneHpRemainingModal': RouteRecordInfo<'/dashboard/components/modals/GameOneHpRemainingModal', '/dashboard/components/modals/GameOneHpRemainingModal', Record<never, never>, Record<never, never>>,
     '/dashboard/components/modals/GameOverModal': RouteRecordInfo<'/dashboard/components/modals/GameOverModal', '/dashboard/components/modals/GameOverModal', Record<never, never>, Record<never, never>>,
+    '/dashboard/components/overview/GameOverview': RouteRecordInfo<'/dashboard/components/overview/GameOverview', '/dashboard/components/overview/GameOverview', Record<never, never>, Record<never, never>>,
+    '/dashboard/components/overview/GameStatusCard': RouteRecordInfo<'/dashboard/components/overview/GameStatusCard', '/dashboard/components/overview/GameStatusCard', Record<never, never>, Record<never, never>>,
     '/dashboard/components/shop/ShopList': RouteRecordInfo<'/dashboard/components/shop/ShopList', '/dashboard/components/shop/ShopList', Record<never, never>, Record<never, never>>,
     '/dashboard/components/shop/ShopListItem': RouteRecordInfo<'/dashboard/components/shop/ShopListItem', '/dashboard/components/shop/ShopListItem', Record<never, never>, Record<never, never>>,
     '/dashboard/components/tasks/TasksTable': RouteRecordInfo<'/dashboard/components/tasks/TasksTable', '/dashboard/components/tasks/TasksTable', Record<never, never>, Record<never, never>>,

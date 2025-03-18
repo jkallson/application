@@ -9,7 +9,6 @@ export class MessageRepository {
     }
 
     static async solveMessage(gameId: string, adId: string): Promise<MessageSolve> {
-        console.log('yo')
         const response: AxiosResponse<MessageSolveResponse> = await axios.post(`${config.apiUrl}/api/game/${gameId}/solve/${adId}`)
         return response.data
     }
