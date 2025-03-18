@@ -118,7 +118,7 @@ export class AutomatedGame {
             return;
         }
 
-        const selectedUpgrade: ShopItem = availableUpgrades.sort((a, b) => {
+        const selectedUpgrade: ShopItem = availableUpgrades.sort((a: ShopItem, b: ShopItem) => {
             const purchasesA: number = this.purchasedUpgrades.get(a.id) || 0;
             const purchasesB: number = this.purchasedUpgrades.get(b.id) || 0;
             return purchasesA - purchasesB;
