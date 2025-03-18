@@ -75,7 +75,10 @@
                                 <span class="status-value">{{ state?.lives }}</span>
                                 <span class="status-label">Lives</span>
                             </div>
-                            <div class="d-flex align-center">
+                            <div
+                                v-if="showButton"
+                                class="d-flex align-center"
+                            >
                                 <v-tooltip
                                     text="Press to go back to the main menu"
                                     location="bottom"
@@ -90,6 +93,25 @@
                                     </template>
                                 </v-tooltip>
                             </div>
+                        </v-col>
+                        <v-col
+                            v-if="!showButton"
+                            cols="12"
+                            class="d-flex justify-center"
+                        >
+                            <v-tooltip
+                                text="Press to go back to the main menu"
+                                location="bottom"
+                            >
+                                <template v-slot:activator="{ props }">
+                                    <v-btn
+                                        v-bind="props"
+                                        size="large"
+                                        icon="mdi-arrow-left"
+                                        @click="toMainMenu"
+                                    ></v-btn>
+                                </template>
+                            </v-tooltip>
                         </v-col>
                     </v-row>
                 </v-card>
@@ -136,6 +158,8 @@ import { GameRepository } from '@/repositories/GameRepository';
 import { useRouter } from 'vue-router';
 const router = useRouter();
 const gameStore = useGameStore()
+import { useDisplay } from 'vuetify'
+const { mdAndUp } = useDisplay()
 
 onMounted(async () => {
     if (gameStore.gameDomain === null) {
@@ -145,6 +169,10 @@ onMounted(async () => {
         await gameStore.gameDomain.fetchMessages(),
         await gameStore.gameDomain.fetchShopItems()
     ])
+})
+
+const showButton: boolean = computed(() => {
+    return mdAndUp.value
 })
 
 const state = computed(() => {
@@ -180,7 +208,6 @@ const toMainMenu = (): void => {
 	background-size: cover;
 	margin: auto;
 	min-height: 100vh;
-	color: #fff;
 	padding: 20px;
 	position: relative;
 }

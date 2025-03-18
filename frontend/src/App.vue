@@ -60,7 +60,6 @@ import { Notifications } from '@kyvg/vue3-notification';
 
     &.info {
         background: #1d75bb;
-        border-left: 5px solid #003465;
     }
 
     &.success {
@@ -70,12 +69,10 @@ import { Notifications } from '@kyvg/vue3-notification';
 
     &.warn {
         background: #ffb648;
-        border-left-color: #f48a06;
     }
 
     &.error {
         background: #b2281d;
-        border-left-color: #500800;
     }
 }
 </style>

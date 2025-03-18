@@ -134,17 +134,17 @@ const features: { icon: string, title: string, description: string, color: strin
 @keyframes glow-spin {
 	from {
 		transform: rotate(0deg);
-		filter: drop-shadow(0 0 5px #4CAF50);
+		filter: drop-shadow(0 0 5px #1ca223);
 	}
 	to {
 		transform: rotate(10deg);
-		filter: drop-shadow(0 0 15px #4CAF50);
+		filter: drop-shadow(0 0 15px #1ca223);
 	}
 }
 
 /* CTA Button */
 .cta-button {
-	background: linear-gradient(135deg, #4CAF50, #3B8D32);
+	background: linear-gradient(135deg, #1ca223, #3B8D32);
 	color: #fff;
 	border-radius: 30px;
 	padding: 12px 32px;
@@ -169,7 +169,7 @@ const features: { icon: string, title: string, description: string, color: strin
 .feature-card:hover {
 	transform: scale(1.05);
 	box-shadow: 0 6px 25px rgba(0, 255, 0, 0.6);
-	border: 2px solid #4CAF50;
+	border: 2px solid #1ca223;
 }
 
 </style>

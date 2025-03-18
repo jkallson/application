@@ -7,7 +7,7 @@
             hide-default-footer
             density="compact"
             class="elevation-2"
-            mobile-breakpoint="sm"
+            mobile-breakpoint="md"
             hover
         >
             <template v-slot:item.action="{ item }">
@@ -57,8 +57,8 @@ import GameOneHpRemainingModal from '@/pages/dashboard/components/modals/GameOne
 const router = useRouter();
 const gameStore = useGameStore()
 
-const LOW_RISK_MESSAGES: string[] = ['Piece of cake', 'Walk in the park']
-const MEDIUM_RISK_MESSAGES: string[] = ['Hmmm....', 'Sure thing', 'Quite likely', 'Gamble']
+const LOW_RISK_MESSAGES: string[] = ['Piece of cake', 'Walk in the park', 'Sure thing']
+const MEDIUM_RISK_MESSAGES: string[] = ['Hmmm....', 'Quite likely', 'Gamble']
 const HIGH_RISK_MESSAGES: string[] = ['Rather detrimental', 'Playing with fire', 'Risky']
 
 const taskHeaders = ref([
@@ -86,7 +86,7 @@ const oneHpRemaining: boolean = computed(() => {
 
 const getColor = (probability: string): string => {
     if (LOW_RISK_MESSAGES.includes(probability)) {
-        return 'success'
+        return 'primary'
     } else if (MEDIUM_RISK_MESSAGES.includes(probability)) {
         return 'secondary'
     } else if(HIGH_RISK_MESSAGES.includes(probability)) {
@@ -151,7 +151,6 @@ const solveTask = async (item: Message): Promise<void> => {
 </script>
 
 <style scoped>
-
 .solve-btn:hover {
 	transform: scale(1.05);
 }
