@@ -38,10 +38,11 @@
             </v-col>
         </v-row>
     </div>
+	<InstructionsModal :show="showInstructions" @close="() => showInstructions = false"></InstructionsModal>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import TasksTable from '@/pages/dashboard/components/tasks/TasksTable.vue';
 import { useGameStore } from '@/stores/gameStore';
 import ShopList from '@/pages/dashboard/components/shop/ShopList.vue';
@@ -49,14 +50,17 @@ import type { Game, Reputation } from '@/types/Game';
 import { GameRepository } from '@/repositories/GameRepository';
 import { useRouter } from 'vue-router';
 import GameOverview from '@/pages/dashboard/components/overview/GameOverview.vue';
+import InstructionsModal from "@/pages/dashboard/components/modals/InstructionsModal.vue";
 const router = useRouter();
 const gameStore = useGameStore()
+const showInstructions = ref<boolean>(false)
 
 onMounted(async () => {
     if (gameStore.gameDomain === null) {
         await router.push('/')
         return
     }
+	showInstructions.value = true
     await Promise.all([
         await gameStore.gameDomain.fetchMessages(),
         await gameStore.gameDomain.fetchShopItems()
@@ -103,6 +107,7 @@ const startGame = async (): Promise<void> => {
 
 .task-card, .shop-card {
 	background: rgba(0, 0, 0, 0.9);
-	border-radius: 12px;
+	border-radius: 6px;
+	border: 2px solid rgba(76, 175, 80, 0.6);
 }
 </style>

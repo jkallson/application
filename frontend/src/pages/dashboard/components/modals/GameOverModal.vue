@@ -61,8 +61,7 @@ const exitGame = (): void => {
 
 <style scoped>
 .game-over-card {
-	background: rgba(0, 0, 0, 0.9);
-	color: #fff;
+	border: 2px solid rgba(76, 175, 80, 0.6);
 	border-radius: 12px;
 }
 </style>

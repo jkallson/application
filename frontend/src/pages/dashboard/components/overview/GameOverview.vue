@@ -121,10 +121,11 @@ const toMainMenu = (): void => {
 <style scoped>
 	.status-card {
 		background: rgba(0, 0, 0, 0.9);
-		border-radius: 12px;
+		border-radius: 6px;
 		padding: 20px;
 		display: flex;
 		flex-direction: column;
 		gap: 15px;
+		border: 2px solid rgba(76, 175, 80, 0.6);
 	}
 </style>

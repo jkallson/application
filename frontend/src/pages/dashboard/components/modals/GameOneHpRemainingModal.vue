@@ -20,7 +20,7 @@
 
                 <div class="purchase-option">
                     You have enough gold to purchase a
-                    <strong>Healing Potion</strong>. Would you like to buy one now?
+                    <strong>Healing Potion</strong>. Would you like to go back and buy one now?
                 </div>
             </v-card-text>
 
@@ -62,5 +62,8 @@ const cancelTask = (): void => {
 </script>
 
 <style scoped>
-
+.low-life-card {
+	border-radius: 12px;
+	border: 2px solid rgba(76, 175, 80, 0.6);
+}
 </style>

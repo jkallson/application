@@ -106,7 +106,6 @@ const features: { icon: string, title: string, description: string, color: strin
 .landing-page-content {
 	position: relative;
 	z-index: 1;
-	color: #fff;
 	text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
 }
 
@@ -123,7 +122,6 @@ const features: { icon: string, title: string, description: string, color: strin
 	font-size: 1.6rem;
 	max-width: 600px;
 	margin: 0 auto 24px;
-	color: #fff;
 	font-weight: 600;
 }
 
@@ -144,7 +142,6 @@ const features: { icon: string, title: string, description: string, color: strin
 
 .cta-button {
 	background: linear-gradient(135deg, #1ca223, #3B8D32);
-	color: #fff;
 	border-radius: 30px;
 	padding: 12px 32px;
 	text-transform: uppercase;
@@ -158,8 +155,7 @@ const features: { icon: string, title: string, description: string, color: strin
 
 .feature-card {
 	background: rgba(0, 0, 0, 0.8);
-	color: #fff;
-	border-radius: 12px;
+	border-radius: 6px;
 	text-align: center;
 	border: 2px solid rgba(76, 175, 80, 0.7);
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
