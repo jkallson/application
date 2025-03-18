@@ -15,7 +15,7 @@
                     class="solve-btn"
                     color="primary"
                     size="small"
-                    :disabled="isSolvingTaskInProgress"
+                    :disabled="isSolvingTaskInProgress || item.encrypted !== null"
                     @click="onSolveTaskPressed(item)"
                 >
                     Solve
